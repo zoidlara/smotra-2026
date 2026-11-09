@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Smotra 3D šetnja</title>
+<style>
+  :root { --ink:#13233a; --paper:#ffffff; --accent:#295DB3; --muted:#5b6b80; --panel:rgba(255,255,255,.92); --line:rgba(19,35,58,.14); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ink:#e8eef7; --paper:#0f1724; --muted:#9fb0c6; --panel:rgba(18,28,44,.9); --line:rgba(232,238,247,.16); } }
+  :root[data-theme="dark"] { --ink:#e8eef7; --paper:#0f1724; --muted:#9fb0c6; --panel:rgba(18,28,44,.9); --line:rgba(232,238,247,.16); }
+  html,body { margin:0; height:100%; overflow:hidden; background:var(--paper); color:var(--ink);
+    font: 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; touch-action:none; -webkit-user-select:none; user-select:none; }
+  #c { position:fixed; inset:0; width:100%; height:100%; display:block; }
+  .box { background:var(--panel); border:1px solid var(--line); border-radius:12px; box-shadow:0 6px 24px rgba(0,0,0,.12); backdrop-filter: blur(6px); }
+  #top { position:fixed; left:12px; top:12px; right:12px; display:flex; gap:8px; align-items:flex-start; flex-wrap:wrap; pointer-events:none; }
+  #top > * { pointer-events:auto; }
+  #title { padding:8px 12px; font-weight:700; }
+  #title small { display:block; font-weight:400; color:var(--muted); }
+  button, select { font:inherit; color:var(--ink); background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:8px 12px; cursor:pointer; }
+  button:hover { border-color:var(--accent); }
+  #info { position:fixed; left:50%; bottom:20px; transform:translateX(-50%); padding:10px 16px; text-align:center; max-width:calc(100% - 32px); display:none; }
+  #info b { font-size:16px; }
+  #info .num { display:inline-block; min-width:28px; padding:2px 8px; margin-right:8px; border-radius:8px; color:#fff; font-weight:700; }
+  #map { position:fixed; right:12px; bottom:12px; width:230px; height:180px; cursor:pointer; }
+  #help { position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); padding:20px 24px; max-width:min(420px, calc(100% - 32px)); text-align:center; }
+  #help h2 { margin:0 0 8px; font-size:18px; }
+  #help p { margin:6px 0; color:var(--muted); }
+  #help kbd { border:1px solid var(--line); border-radius:5px; padding:1px 6px; font: 12px ui-monospace, monospace; color:var(--ink); }
+  #help button { margin-top:12px; background:var(--accent); color:#fff; border:0; padding:10px 18px; }
+  #cross { position:fixed; left:50%; top:50%; width:6px; height:6px; margin:-3px 0 0 -3px; border-radius:50%; background:rgba(255,255,255,.8); box-shadow:0 0 0 1px rgba(0,0,0,.4); display:none; pointer-events:none; }
+  #stick { position:fixed; left:24px; bottom:24px; width:120px; height:120px; border-radius:50%; border:2px solid var(--line); background:rgba(255,255,255,.15); display:none; }
+  #stick i { position:absolute; left:50%; top:50%; width:50px; height:50px; margin:-25px 0 0 -25px; border-radius:50%; background:var(--panel); border:1px solid var(--line); }
+  @media (max-width: 640px) { #map { width:150px; height:118px; } #title small { display:none; } #info { bottom:160px; } }
+  .touch #stick { display:block; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="cross"></div>
+<div id="top">
+  <div id="title" class="box">Smotra Sveučilišta 2026 · 1. kat<small>3D šetnja kroz štandove</small></div>
+  <button id="btnView">Pogled odozgo</button>
+  <select id="jump" aria-label="Idi do štanda"><option value="">Idi do štanda…</option></select>
+</div>
+<div id="info" class="box"></div>
+<canvas id="map" class="box" title="Klikni na tlocrt da se prebaciš tamo"></canvas>
+<div id="stick"><i></i></div>
+<div id="help" class="box">
+  <h2>Prošetaj Smotrom</h2>
+  <p class="desk">Klikni u prostor, pa se kreći s <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ili strelicama, a mišem se okreći. <kbd>Shift</kbd> za brže, <kbd>Esc</kbd> za izlaz.</p>
+  <p class="mob">Lijevim krugom hodaš, a povlačenjem prsta po ostatku ekrana se okrećeš.</p>
+  <p>Klik na mali tlocrt ili izbornik „Idi do štanda” odmah te prebaci.</p>
+  <button id="go">Kreni</button>
+</div>
+<script src="lib/three.min.js"></script>
+<script src="layout.js"></script>
+<script src="stands.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
