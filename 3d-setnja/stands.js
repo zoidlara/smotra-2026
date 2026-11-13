@@ -1,4 +1,4 @@
-window.VERZIJA = "2026-11-10g";   // promijeni kad zamijeniš slike, da preglednik učita nove
+window.VERZIJA = "2026-11-13d";   // promijeni kad zamijeniš slike, da preglednik učita nove
 // =====================================================================
 //  SMOTRA 2026 · 1. kat · POPIS ŠTANDOVA
 //  Ovdje mijenjaš naziv i boju štanda. Slike panela idu u mapu
@@ -28,7 +28,7 @@ window.STANDOVI = [
   { broj: 3,  naziv: "Ekonomski fakultet",                                   boja: "#F03D1F" },
   { broj: 4,  naziv: "Filozofski fakultet",                                  boja: "#F03D1F" },
   { broj: 5,  naziv: "Katolički bogoslovni fakultet",                        boja: "#F03D1F" },
-  { broj: 6,  naziv: "Komunikacija i mediji",                                boja: "#F03D1F" },
+  { broj: 6,  naziv: "Sveučilišni studij Komunikacija i mediji",                boja: "#F03D1F" },
   { broj: 7,  naziv: "Hotelijerstvo i gastronomija",                         boja: "#F03D1F" },
   { broj: 8,  naziv: "Fakultet elektrotehnike, strojarstva i brodogradnje",  boja: "#295DB3" },
   { broj: 9,  naziv: "Pomorski fakultet",                                    boja: "#295DB3" },
