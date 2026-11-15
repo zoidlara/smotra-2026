@@ -62,6 +62,7 @@ window.RASPORED = {
     },
     stol: { x: 218, y: 466, sirina: 0.65, dubina: 1.2 },   // stol ispred Rektorata
     polukrug: { x: 62, y: 467, r: 238 },                    // plavi polukrug ispred Rektorata
+    kviz: { x: 205, y: 640, smjer: "E", zaokret: -15 },        // kviz (forex okvir s ekranom) lijevo ispred Rektorata
   },
   start: { kat: 0, x: 857, y: 735, gleda: "N" },           // na ulazu u prizemlje (koordinate prizemlja)
 };

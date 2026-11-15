@@ -165,6 +165,20 @@
     addRect(m.position.x - t.sirina / 2, m.position.z - t.dubina / 2, m.position.x + t.sirina / 2, m.position.z + t.dubina / 2); }
   if (P0.polukrug) { const pk = P0.polukrug, r = pk.r / P0.pxPoMetru; const m = new THREE.Mesh(new THREE.RingGeometry(r - 0.06, r, 72, 1, -Math.PI / 2, Math.PI), new THREE.MeshBasicMaterial({ color: new THREE.Color('#1f5fd6').convertSRGBToLinear(), side: THREE.DoubleSide }));
     m.rotation.x = -Math.PI / 2; m.position.set(wx(g2x(pk.x)), FL0 + 0.006, wz(g2y(pk.y))); add(m); }
+  // kviz: forex okvir 1800 × 2500 mm s ekranom (stands/20/kviz.png), uz štand Rektorata
+  if (P0.kviz) { const q = P0.kviz, kg = new THREE.Group(), ry = { E: Math.PI / 2, W: -Math.PI / 2, N: Math.PI, S: 0 }[q.smjer] || 0;
+    kg.position.set(wx(g2x(q.x)), FL0, wz(g2y(q.y))); kg.rotation.y = ry + (q.zaokret || 0) * Math.PI / 180; add(kg); window.__kviz = kg;
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 2.5), lam({ color: 0xffffff, transparent: true, alphaTest: 0.5, side: THREE.DoubleSide }));
+    face.position.set(0, 1.25, 0); face.material.visible = false; kg.add(face);
+    const back = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 2.5), face.material); back.rotation.y = Math.PI; back.position.set(0, 1.25, -0.012); kg.add(back);
+    loadTex(20, 'kviz', (t) => { face.material = lam({ map: t, alphaTest: 0.5, side: THREE.FrontSide });
+      const im = t.image, c = document.createElement('canvas'); c.width = im.width; c.height = im.height; const g = c.getContext('2d');
+      g.drawImage(im, 0, 0); g.globalCompositeOperation = 'source-in'; g.fillStyle = '#f2f2f2'; g.fillRect(0, 0, c.width, c.height);
+      back.material = lam({ map: new THREE.CanvasTexture(c), alphaTest: 0.5 }); });
+    const leg = lam({ color: 0x8d949c });
+    const base = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.03, 0.6), leg); base.position.set(0, 0.015, -0.25); kg.add(base);
+    [-0.35, 0.35].forEach((x) => { const p = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.9, 0.05), leg); p.position.set(x, 0.95, -0.06); kg.add(p); });
+    const c = kg.position; addRect(c.x - 0.5, c.z - 0.5, c.x + 0.5, c.z + 0.5); }
 
   // ---------- štandovi ----------
   const metal = lam({ color: 0xb4b9bf });
