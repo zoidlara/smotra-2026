@@ -1,4 +1,4 @@
-window.VERZIJA = "2026-11-16a";   // promijeni kad zamijeniš slike, da preglednik učita nove
+window.VERZIJA = "2026-11-16b";   // promijeni kad zamijeniš slike, da preglednik učita nove
 // =====================================================================
 //  SMOTRA 2026 · 1. kat · POPIS ŠTANDOVA
 //  Ovdje mijenjaš naziv i boju štanda. Slike panela idu u mapu
